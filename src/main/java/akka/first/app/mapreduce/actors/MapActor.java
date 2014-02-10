@@ -15,10 +15,15 @@ public class MapActor extends UntypedActor {
 			"do", "go", "if", "in", "is", "it", "of", "on", "the", "to" };
 	List<String> STOP_WORDS_LIST = Arrays.asList(STOP_WORDS);
 
+	public MapActor() {
+		System.out.println("construindo map actor");
+	}
+	
 	@Override
 	public void onReceive(Object message) throws Exception {
 
 		if (message instanceof String) {
+			System.out.println("[map actor] processando mensagem");
 			String work = (String) message;
 			getSender().tell(evaluateExpression(work));
 		} else {

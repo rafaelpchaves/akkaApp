@@ -10,10 +10,15 @@ import akka.first.app.mapreduce.messages.WordCount;
 
 public class ReduceActor extends UntypedActor {
 
+	public ReduceActor() {
+		System.out.println("construindo reduce actor");
+	}
+	
 	@Override
 	public void onReceive(Object message) throws Exception {
 
 		if (message instanceof MapData) {
+			System.out.println("[reduce actor] processando mensagem");
 			MapData mapData = (MapData) message;
 			getSender().tell(reduce(mapData.getDataList()));
 		}

@@ -11,12 +11,19 @@ public class AggregateActor extends UntypedActor {
 
 	private Map<String, Integer> finalReducedMap = new HashMap<String, Integer>();
 
+	
+	public AggregateActor() {
+		System.out.println("construindo agregate actor");
+	}
+	
 	@Override
 	public void onReceive(Object message) throws Exception {
 		if (message instanceof ReduceData) {
+			System.out.println("processando reduce message");
 			ReduceData reduceData = (ReduceData) message;
 			aggregateInMemoryReduce(reduceData.getReduceDataList());
 		} else if (message instanceof Result) {
+			System.out.println("processando reduce");
 			getSender().tell(finalReducedMap.toString());
 		} else
 			unhandled(message);

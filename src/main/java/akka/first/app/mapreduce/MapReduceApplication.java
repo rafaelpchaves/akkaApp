@@ -20,11 +20,9 @@ public class MapReduceApplication {
 			master.tell("The quick brown fox tried to jump over the lazy dog and fell on the dog");
 			master.tell("Dog is man's best friend");
 			master.tell("Dog and Fox belong to the same family");
-			Thread.sleep(5000);
-			Future<Object> future = Patterns.ask(master, new 
-			Result(), timeout);
-			String result = (String) Await.result(future, 
-			timeout.duration());
+			Thread.sleep(20000);
+			Future<Object> future = Patterns.ask(master, new Result(), timeout);
+			String result = (String) Await.result(future, timeout.duration());
 			System.out.println(result);
 			_system.shutdown();
 			}
